@@ -13,5 +13,34 @@ import java.util.LinkedList;
  * @author Venta PC
  */
 public class CompraController {
+    CompraModel model = new CompraModel();
+
+    public LinkedList getModel(){
+        return model.getCompras();
+    }
+    public String getInfo(int x){
+        Producto actual;
+        actual = model.getAct();
+        if(x==0){
+            return actual.getNombre();
+        }else if(x == 1){
+            return ""+actual.getPrecio();
+        }else{
+            return actual.getDescripcion();
+        }
+    }
+
+    public void compra(){
+        model.comprar();
+    }
+
+    public void cambiarProducto(boolean b){
+
+        if(b && model.getAct().getId()!=2){
+            model.subirActual();
+        }else if(b == false && model.getAct().getId()!=0){
+            model.bajarActual();
+        }
+    }
     
 }
